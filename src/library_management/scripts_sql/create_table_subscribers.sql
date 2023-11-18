@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS "subscriber" (
 );
 
 INSERT INTO "subscriber" (id, name, birthdate, reference)
-VALUES ('subs1', 'Sophie Martin', 'jklk011');
+VALUES ('subs1', 'Sophie Martin', '1990/05/02', 'jklk011');
 
 INSERT INTO "subscriber" (id, name, birthdate, reference)
-VALUES ('subs2', 'Lucas Dupont','djkh232');
+VALUES ('subs2', 'Lucas Dupont', '1995/06/04','djkh232');
 
 INSERT INTO "subscriber" (id, name,birthdate, reference)
-VALUES ('subs3', 'Marie Leblanc','mpol326');
+VALUES ('subs3', 'Marie Leblanc', '1992/10/14', 'mpol326');
