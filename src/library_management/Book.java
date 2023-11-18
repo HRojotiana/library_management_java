@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Book extends CrupdateBook{
-    String idAuthor;
+    private String idAuthor;
 
     public Book(String id, String bookName, int pageNumbers, String topic, Date releaseDate, String status, String idAuthor) {
         super(id, bookName, pageNumbers, topic, releaseDate, status);
