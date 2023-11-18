@@ -20,6 +20,7 @@ public class CrupdateBook {
         this.status = status;
     }
 
+    //getter
     public String getId() {
         return id;
     }
@@ -44,6 +45,7 @@ public class CrupdateBook {
         return status;
     }
 
+    //Setter
     public void setId(String id) {
         this.id = id;
     }
@@ -57,7 +59,9 @@ public class CrupdateBook {
     }
 
     public void setTopic(String topic) {
-        this.topic = topic;
+        if(topic.equalsIgnoreCase("romance") || topic.equalsIgnoreCase("comedy") || topic.equalsIgnoreCase("other")) {
+            this.topic = topic;
+        }
     }
 
     public void setReleaseDate(Date releaseDate) {
@@ -65,7 +69,9 @@ public class CrupdateBook {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if(status.equalsIgnoreCase("borrowed") || status.equalsIgnoreCase("available")) {
+            this.status = status;
+        }
     }
 
     @Override
