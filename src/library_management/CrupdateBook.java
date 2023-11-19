@@ -74,6 +74,20 @@ public class CrupdateBook {
         }
     }
 
+    //toString
+
+
+    @Override
+    public String toString() {
+        return "id='" + id + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", pageNumbers=" + pageNumbers +
+                ", topic='" + topic + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", status='" + status + '\'' ;
+    }
+
+    //Equals and Hashcode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
