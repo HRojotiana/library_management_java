@@ -22,8 +22,17 @@ public class Subscriber extends User{
         this.birthdate = birthdate;
     }
 
-    //Equals and hashcode
+    //toString
 
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() +
+                "birthdate=" + birthdate +
+                "} ";
+    }
+
+    //Equals and hashcode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
