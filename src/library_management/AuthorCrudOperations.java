@@ -1,6 +1,7 @@
 package library_management;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -31,7 +32,20 @@ public class AuthorCrudOperations implements CrudOperations<Author>{
 
     @Override
     public List<Author> saveAll(List<Author> toSave) {
-        return null;
+        String sql = "INSERT INTO \"author\" VALUES (?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            for (Author author : toSave) {
+                preparedStatement.setString(1, author.getId());
+                preparedStatement.setString(2, author.getName());
+                preparedStatement.setString(3, author.getSex());
+
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return toSave;
     }
 
     @Override
