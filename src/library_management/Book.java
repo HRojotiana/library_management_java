@@ -22,8 +22,15 @@ public class Book extends CrupdateBook{
         this.idAuthor = idAuthor;
     }
 
-    //Equals and HashCode
+    //toString
 
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() + "idAuthor='" + idAuthor + '\'' + "}";
+    }
+
+    //Equals and HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
