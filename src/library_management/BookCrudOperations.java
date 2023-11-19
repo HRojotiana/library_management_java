@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookCrudOperations implements CrudOperations<Book>{
+public class BookCrudOperations implements CrudOperations<Book> {
     ConnectionAndStatement connectionAndStatement = ConnectionAndStatement.getInstance();
     Connection connection = connectionAndStatement.getConnection();
 
@@ -13,9 +13,9 @@ public class BookCrudOperations implements CrudOperations<Book>{
         List bookList = new ArrayList<>();
         String sql = "select * from \"book\"";
         Book book;
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 book = new Book(
                         resultSet.getString("id"),
                         resultSet.getString("book_name"),
@@ -28,22 +28,39 @@ public class BookCrudOperations implements CrudOperations<Book>{
                 bookList.add(book);
             }
 
-        }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return bookList;
     }
 
     @Override
     public List<Book> saveAll(List<Book> toSave) {
-        return null;
+        String sql = "INSERT INTO \"book\" VALUES (?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            for (Book book : toSave) {
+                preparedStatement.setString(1, book.getId());
+                preparedStatement.setString(2, book.getBookName());
+                preparedStatement.setInt(3, book.getPageNumbers());
+                preparedStatement.setString(4, book.getTopic());
+                preparedStatement.setDate(5, (Date) book.getReleaseDate());
+                preparedStatement.setString(6, book.getStatus());
+                preparedStatement.setString(7, book.getIdAuthor());
+
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return toSave;
     }
 
     @Override
     public Book save(Book toSave) {
         Book newBook = null;
         String sql = "INSERT INTO \"book\" (id, book_name, page_numbers, topic, release_date, status, id_author) VALUES (?,?,?,?,?,?,?)";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, toSave.getId());
             preparedStatement.setString(2, toSave.getBookName());
             preparedStatement.setInt(3, toSave.getPageNumbers());
@@ -54,8 +71,8 @@ public class BookCrudOperations implements CrudOperations<Book>{
 
             newBook = new Book(toSave.getId(), toSave.getBookName(), toSave.getPageNumbers(), toSave.getTopic(), toSave.getReleaseDate(), toSave.getStatus(), toSave.getIdAuthor());
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return newBook;
     }
@@ -63,11 +80,11 @@ public class BookCrudOperations implements CrudOperations<Book>{
     @Override
     public Book delete(Book toDelete) {
         String sql = "DELETE FROM \"book\" WHERE id = ?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, toDelete.getId());
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         return toDelete;
     }
