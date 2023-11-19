@@ -1,4 +1,6 @@
-package library_management;
+package library_management.repository;
+
+import library_management.model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package library_management;
+package library_management.model;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class Subscriber extends User{
+public class Subscriber extends User {
     private Date birthdate;
 
     //Constructor
@@ -28,7 +28,7 @@ public class Subscriber extends User{
     @Override
     public String toString() {
         return "{" + super.toString() +
-                "birthdate=" + birthdate +
+                ",birthdate=" + birthdate +
                 "} ";
     }
 

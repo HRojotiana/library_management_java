@@ -1,13 +1,14 @@
-package library_management;
+package library_management.repository;
+
+import library_management.model.Author;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthorCrudOperations implements CrudOperations<Author>{
+public class AuthorCrudOperations implements CrudOperations<Author> {
     ConnectionAndStatement connectionAndStatement = ConnectionAndStatement.getInstance();
     Connection connection = connectionAndStatement.getConnection();
     @Override

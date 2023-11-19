@@ -1,4 +1,6 @@
-package library_management;
+package library_management.repository;
+
+import library_management.model.Subscriber;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,7 +15,7 @@ public class SubscriberCrudOperations implements CrudOperations<Subscriber> {
 
     @Override
     public List<Subscriber> findAll() {
-        String sql = "SELECT * FROM \"subsciber\"";
+        String sql = "SELECT * FROM \"subscriber\"";
         List<Subscriber> subscriberList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();

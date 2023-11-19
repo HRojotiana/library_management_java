@@ -1,4 +1,4 @@
-package library_management;
+package library_management.model;
 
 import java.util.Objects;
 
