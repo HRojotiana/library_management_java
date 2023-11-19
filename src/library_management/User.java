@@ -43,6 +43,16 @@ public class User {
         this.reference = reference;
     }
 
+    //toString
+
+    @Override
+    public String toString() {
+        return "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", reference='" + reference + '\'' ;
+    }
+
+
     //Equals and hashcode
 
     @Override
